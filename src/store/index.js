@@ -1,17 +1,26 @@
 import { defineStore } from 'pinia';
-import { ref, } from 'vue'
 
 // setup stores
-const store = defineStore('list', () => {
-    const list = ref([]);
-
-    function addList(param){
-        list.value.push(param)
-    }
-
-    const getDataAll = computed(()=>{list.value})
-
-    return { list, addList, getDataAll };
+const store = defineStore('list', {
+    state: ()=>({
+        list: [],
+    }),
+    actions: {
+        addList(param){
+            this.list.push(param);
+        },
+        popList(){
+            this.list.pop();
+        }
+    },
+    getters: {
+        getDataAll: (state)=>{
+            return state.list;
+        }
+    },
+    persist: {
+        key: 'pinia'
+    },
 });
 
 export default store

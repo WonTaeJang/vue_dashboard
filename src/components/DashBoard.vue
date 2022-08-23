@@ -8,16 +8,24 @@
     <div>computed: {{getCount}}</div>
     <button @click="getCount = -1">-</button>
 
+    <div>
+      <button @click="listStore.addList(1)">+</button>
+      <button @click="listStore.popList">-</button>
+      {{listStore.getDataAll}}
+    </div>
+    
+
   </div>
 </template>
 
 <script setup>
-// import { useListStore } from '@/store/list'
-// import { computed } from '@vue/runtime-core';
+import useListStore from '@/store/index'
 import {ref, onMounted, computed} from 'vue'
 
 const cnt = ref(0);
 const city = ref('');
+
+const listStore = useListStore();
 
 
 function plus(){
