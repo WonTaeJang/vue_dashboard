@@ -1,0 +1,43 @@
+<template>
+  <div class="dropzone">
+    <div @drag="funcDrag" id="draggable" draggable="true">드래그 가능</div>
+  </div>
+  <div class="dropzone"></div>
+</template>
+
+<script setup>
+
+function funcDrag(event){
+    console.log(event)
+}
+
+
+</script>
+
+<style scoped>
+body {
+  /* 사용자가 예제의 텍스트를 선택하지 못하도록 */
+  user-select: none;
+}
+
+#draggable {
+  text-align: center;
+  background: white;
+}
+
+.dropzone {
+  width: 200px;
+  height: 20px;
+  background: blueviolet;
+  margin: 10px;
+  padding: 10px;
+}
+
+.dropzone.dragover {
+  background-color: purple;
+}
+
+.dragging {
+  opacity: 0.5;
+}
+</style>

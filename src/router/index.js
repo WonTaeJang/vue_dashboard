@@ -3,7 +3,11 @@ import { createWebHistory, createRouter } from "vue-router";
 const routes = [
   {
     path: "/",
-    component: () => import('@/components/HelloWorld.vue'),
+    component: () => import('@/components/DashBoard.vue'),
+  },
+  {
+    path: "/drag",
+    component: () => import('@/components/DragDrop.vue'),
   },
   {
     path: "/board",
