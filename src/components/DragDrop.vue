@@ -1,17 +1,85 @@
 <template>
-  <div class="dropzone">
-    <div @drag="funcDrag" id="draggable" draggable="true">드래그 가능</div>
+  <div
+    class="dropzone"
+    @drag="funcDrag"
+    @dragend="funcEnd"
+    @dragover="funcOver"
+    @dragenter="funcEnter"
+    @dragleave="funcLeave"
+    @drop="funcDrop"
+  >
+    <div id="draggable" draggable="true"
+    @dragstart="funcStart"
+    >
+      드래그 가능
+    </div>
   </div>
-  <div class="dropzone"></div>
+  <div
+    class="dropzone"
+    @drag="funcDrag"
+    @dragend="funcEnd"
+    @dragover="funcOver"
+    @dragenter="funcEnter"
+    @dragleave="funcLeave"
+    @drop="funcDrop"
+  ></div>
+  <input type="checkbox" />
 </template>
 
 <script setup>
+import { ref } from "vue";
 
-function funcDrag(event){
-    console.log(event)
+const dragged = ref("");
+
+function funcDrag() {
+  // console.log(event);
 }
 
+function funcStart(event) {
+  dragged.value = event.target;
+  event.target.classList.add("dragging");
+  //   console.log(dragged.value);
+}
 
+function funcEnd(event) {
+  dragged.value = event.target;
+  event.target.classList.remove("dragging");
+  //   console.log(dragged.value);
+}
+
+function funcOver(event) {
+  // draggle = true 한 div 안에서 움직일때 발생하는 이벤트
+  event.preventDefault();
+
+  // console.log('over')
+}
+
+function funcEnter(event) {
+  console.log("enter");
+  console.log(event.target);
+  if (event.target.classList.contains("dropzone")) {
+    console.log("contain");
+    event.target.classList.add("dragover");
+  }
+}
+
+function funcLeave(event) {
+  if (event.target.classList.contains("dropzone")) {
+    event.target.classList.remove("dragover");
+  }
+}
+
+function funcDrop(event){
+    event.preventDefault();
+
+    if(event.target.classList.contains("dropzone")){
+        console.log(dragged.value)
+        console.log(dragged.value.parentNode)
+        event.target.classList.remove("dragover");
+        dragged.value.parentNode.removeChild(dragged.value);
+        event.target.appendChild(dragged.value);
+    }
+}
 </script>
 
 <style scoped>
