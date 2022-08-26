@@ -6,8 +6,12 @@ const routes = [
     component: () => import('@/components/DashBoard.vue'),
   },
   {
-    path: "/drag",
-    component: () => import('@/components/DragDrop.vue'),
+    path: "/drag/0",
+    component: () => import('@/components/DragDrop/DragDrop.vue'),
+  },
+  {
+    path: "/drag/1",
+    component: () => import('@/components/DragDrop/DragDrop2.vue'),
   },
   {
     path: "/board",

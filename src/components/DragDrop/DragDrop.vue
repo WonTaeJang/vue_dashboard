@@ -24,6 +24,10 @@
     @drop="funcDrop"
   ></div>
   <input type="checkbox" />
+
+  <div>
+    
+  </div>
 </template>
 
 <script setup>
