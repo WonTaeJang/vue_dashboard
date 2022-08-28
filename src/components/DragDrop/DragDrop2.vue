@@ -1,56 +1,20 @@
 <template>
-<div class="content">
+  <div class="content">
     <div class="flexbox">
-        <div class="col">
-            <div class="box"></div>
-        </div>
-
-        <div class="col">
-            <div class="box"></div>
-        </div>
-
-        <div class="col">
-            <div class="box"></div>
-        </div>
-        <div class="col">
-            <div class="box"></div>
-        </div>
-
-        <div class="col">
-            <div class="box"></div>
-        </div>
-
-        <div class="col">
-            <div class="box"></div>
+        <div class="col" v-for="(item, ) in lists" :key="item.id">
+            <div class="box" v-for="(numItem, idx) in item.numberList" :key="idx">
+                <p>{{numItem.content}}</p>
+            </div>
         </div>
     </div>
-
-</div>
-  
+  </div>
 </template>
 
 <script setup>
-//import { ref } from "vue";
+import list from "@/assets/data/list.js"
+import { ref } from "vue";
 
-// const list = ref([
-//   {
-//     id: 1,
-//     numberList: [{ content: 1 }, { content: 2 }],
-//   },
-//   {
-//     id: 2,
-//     numberList: [
-//       { content: 3 },
-//       { content: 4 },
-//       { content: 5 },
-//       { content: 6 },
-//     ],
-//   },
-//   {
-//     id: 3,
-//     numberList: [{ content: 7 }, { content: 8 }, { content: 9 }],
-//   },
-// ]);
+const lists = ref([...list]);
 </script>
 
 <style>
@@ -75,17 +39,17 @@
 }
 p {
   text-align: center;
-  line-height: 50px;
+  line-height: 20px;
   color: white;
 }
 
-.content{
-    max-width: 650px;
-    margin:0 auto;
+.content {
+  max-width: 650px;
+  margin: 0 auto;
 }
-.flexbox{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 </style>
