@@ -23,10 +23,10 @@
     @dragleave="funcLeave"
     @drop="funcDrop"
   ></div>
-  <input type="checkbox" />
 
   <div>
-    
+    event log: 
+    <label>{{log}}</label>
   </div>
 </template>
 
@@ -34,20 +34,26 @@
 import { ref } from "vue";
 
 const dragged = ref("");
+const log = ref("");
 
 function funcDrag() {
+  log.value = "drag"
   // console.log(event);
 }
 
 function funcStart(event) {
   dragged.value = event.target;
   event.target.classList.add("dragging");
+
+  log.value = "drag start"
   //   console.log(dragged.value);
 }
 
 function funcEnd(event) {
   dragged.value = event.target;
   event.target.classList.remove("dragging");
+
+  log.value = "drag end"
   //   console.log(dragged.value);
 }
 
@@ -55,14 +61,15 @@ function funcOver(event) {
   // draggle = true 한 div 안에서 움직일때 발생하는 이벤트
   event.preventDefault();
 
+  log.value = "drag over"
   // console.log('over')
 }
 
 function funcEnter(event) {
-  console.log("enter");
-  console.log(event.target);
+  log.value = "drag enter"
+  // console.log(event.target);
   if (event.target.classList.contains("dropzone")) {
-    console.log("contain");
+    log.value = "in dropzone"
     event.target.classList.add("dragover");
   }
 }
@@ -75,13 +82,15 @@ function funcLeave(event) {
 
 function funcDrop(event){
     event.preventDefault();
-
+    log.value = "drop"
     if(event.target.classList.contains("dropzone")){
-        console.log(dragged.value)
-        console.log(dragged.value.parentNode)
+        // console.log(dragged.value)
+        // console.log(dragged.value.parentNode)
         event.target.classList.remove("dragover");
         dragged.value.parentNode.removeChild(dragged.value);
         event.target.appendChild(dragged.value);
+
+        log.value = "drop clear"
     }
 }
 </script>
