@@ -14,6 +14,10 @@ const routes = [
     component: () => import('@/components/DragDrop/DragDrop2.vue'),
   },
   {
+    path: "/drag/2",
+    component: () => import('@/components/DragDrop/DragDrop3.vue'),
+  },
+  {
     path: "/board",
     component: () => import('@/components/DashBoard.vue'),
   },

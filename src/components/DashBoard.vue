@@ -30,6 +30,9 @@
     <div>
       <router-link to="/drag/1">drag & drop 2</router-link>
     </div>
+    <div>
+      <router-link to="/drag/2">drag & drop 3</router-link>
+    </div>
   </div>
 </template>
 

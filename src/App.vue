@@ -15,6 +15,6 @@ export default {
 
 <style>
 .container {
-
+  text-align: center;
 }
 </style>
