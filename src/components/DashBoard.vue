@@ -37,14 +37,14 @@
 </template>
 
 <script setup>
-import useListStore from "@/store/index";
+import {store} from "@/store/list";
 import { ref, onMounted, computed } from "vue";
 
 const cnt = ref(0);
 const city = ref("");
 const current = ref("sss");
 
-const listStore = useListStore();
+const listStore = store();
 
 function plus() {
   cnt.value++;

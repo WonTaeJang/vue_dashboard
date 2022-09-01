@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 const store = defineStore('list', {
     state: ()=>({
         list: [],
+        boxList: []
     }),
     actions: {
         addList(param){
@@ -11,11 +12,17 @@ const store = defineStore('list', {
         },
         popList(){
             this.list.pop();
+        },
+        save(items){
+            this.boxList = [...items]
         }
     },
     getters: {
         getDataAll: (state)=>{
             return state.list;
+        },
+        getBoxList: (state)=>{
+            return state.boxList;
         }
     },
     persist: {
@@ -23,4 +30,4 @@ const store = defineStore('list', {
     },
 });
 
-export default store
+export {store}
