@@ -23,17 +23,36 @@
     </div>
   </div>
 
+  <hr>
+
   <div>
+    <div>drag & drop</div>
     <div>
-      <router-link to="/drag/0">drag & drop 1</router-link>
+      <router-link to="/drag/0">element drag & drop</router-link>
     </div>
     <div>
-      <router-link to="/drag/1">drag & drop 2</router-link>
+      <router-link to="/drag/1">component drag & drop</router-link>
     </div>
     <div>
-      <router-link to="/drag/2">drag & drop 3</router-link>
+      <router-link to="/drag/2">pinia save & loading</router-link>
+    </div>
+    <div>
+      <router-link to="/drag/3">pinia sort save</router-link>
     </div>
   </div>
+
+  <hr>
+
+  <div>
+    <div>
+      binding
+    </div>
+    <div>
+      <router-link to="/bind/0">data binding</router-link>
+    </div>
+  </div>
+
+  <hr>
 </template>
 
 <script setup>
