@@ -29,7 +29,7 @@ const dragged = ref('');
 
 function startDrag(event){
     dragged.value = event.target;
-    console.log(event)
+    console.log(event.target)
 
     event.target.classList.add("dragging");
 }

@@ -5,12 +5,12 @@
     <button @click="saveStoreList">store 저장하기</button>
   <div class="content">
     <div class="flexbox">
-        <div class="col" v-for="(item, idx) in lists" :key="item.id"
+        <div class="col" v-for="(item, idx) in lists" :key="item.id" :id="item.id"
             @drop.prevent="onDrop($event, idx)"
             @dragenter.prevent
             @dragover.prevent
         >
-            <div class="box" v-for="(numItem, idx) in item.numberList" :key="idx"
+            <div class="box" v-for="(numItem, idx) in item.numberList" :key="idx" :id="idx"
                 draggable="true"
                 @dragstart="startDrag($event, numItem, item.id)"
                 @dragend="endDrag"
@@ -27,6 +27,7 @@ import list from "@/assets/data/list.js"
 import { ref } from "vue";
 import { store } from '@/store/list'
 
+const box = ref({});
 const lists = ref([]);
 const listStore = store();
 
@@ -47,7 +48,16 @@ function getStoreList(){
 
 function startDrag(event){
     dragged.value = event.target;
-    console.log(event)
+    // console.log(event.target.parentNode.id);
+    // console.log(event.target.innerText);
+
+    box.value = {
+        id: event.target.parentNode.id,
+        box_id: event.target.id,
+        boxName: event.target.innerText
+    }
+
+    console.log('start drag', box.value)
 
     event.target.classList.add("dragging");
 }
@@ -58,11 +68,34 @@ function endDrag(event){
 }
 
 function onDrop(event, idx){
+    // list에 data를 전달하지 않아서 갱신되지 않는다.
     console.log(event, idx)
 
     if(event.target.classList.contains("col")){
+        // drop하는 container 위치
+        // const ctr = event.target.parentNode.id;
+
         dragged.value.parentNode.removeChild(dragged.value);
         event.target.appendChild(dragged.value);
+
+        // delete list
+        let temp_list = [];
+        temp_list = lists.value[box.value.id].numberList.filter(e=>{
+            if(e.content == box.value.boxName)
+                return false;
+            else
+                return true;
+        })
+
+        lists.value[box.value.id].numberList = [...temp_list];
+
+
+        // insert list
+        
+
+        console.log(temp_list)
+
+        
     }
 }
 
